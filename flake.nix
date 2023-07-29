@@ -1,0 +1,52 @@
+#  flake.nix *             
+#   ├─ ./hosts
+#   │   └─ default.nix
+#   └─ ./nix
+#       └─ default.nix
+#
+
+{
+    description = "My Personal NixOS Configuration";
+
+    inputs =                                                                  # All flake references used to build my NixOS setup. These are dependencies.
+        {
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";                     # Default Stable Nix Packages
+
+        home-manager = {                                                      # User Package Management
+            url = "github:nix-community/home-manager/master";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        hyprland = {                                                          # Official Hyprland flake
+            url = "github:vaxerski/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        plasma-manager = {                                                    # KDE Plasma user settings
+            url = "github:pjones/plasma-manager";                               # Add "inputs.plasma-manager.homeManagerModules.plasma-manager" to the home-manager.users.${user}.imports
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.home-manager.follows = "nixpkgs";
+        };
+        };
+
+    outputs = inputs @ { self, nixpkgs, home-manager, hyprland, plasma-manager, ... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
+    let                                                                     # Variables that can be used in the config files.
+        user = "ryan";
+        location = "$HOME/.setup";
+    in                                                                      # Use above variables in ...
+    {
+        nixosConfigurations = (                                               # NixOS configurations
+            import ./hosts {                                                    # Imports ./hosts/default.nix
+            inherit (nixpkgs) lib;
+            inherit inputs nixpkgs home-manager user location hyprland plasma-manager;   # Also inherit home-manager so it does not need to be defined here.
+            }
+        );
+
+        homeConfigurations = (                                                # Non-NixOS configurations
+            import ./nix {
+            inherit (nixpkgs) lib;
+            inherit inputs nixpkgs home-manager user;
+            }
+        );
+    };
+}
