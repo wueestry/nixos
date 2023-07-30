@@ -30,7 +30,7 @@
             pavucontrol       # Audio Control
 
             # Apps
-            librewolf          # Browser
+            firefox          # Browser
             brave              # Browser
             nextcloud-client
             obsidian
@@ -59,11 +59,10 @@
             
             # Laptop
             libreoffice      # Office Tools
-        ]) ++ (with pkgs.libsForQt5; [
-            ark
-            dolphin
-            dolphin-plugins
-            qtstyleplugin-kvantum
+        ]) ++ (with pkgs.xfce; [
+            thunar
+            thunar-volman
+            thunar-archive-plugin
         ]);
 
 
