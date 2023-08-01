@@ -46,6 +46,8 @@
 		noto-fonts
 		roboto
 	];
+    
+    hardware.bluetooth.enable = true;
 
     environment = {
         variables = {
