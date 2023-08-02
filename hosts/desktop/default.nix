@@ -16,7 +16,7 @@
 #
 #
 
-{ pkgs, lib, user, ... }:
+{ pkgs, unstable, lib, user, ... }:
 
 {
     imports =

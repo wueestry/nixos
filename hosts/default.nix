@@ -11,7 +11,7 @@
 #            └─ ./home.nix 
 #
 
-{ lib, inputs, nixpkgs, home-manager, user, location, hyprland, plasma-manager, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, user, location, plasma-manager, ... }:
 
 let
     system = "x86_64-linux";                                  # System architecture
@@ -21,19 +21,24 @@ let
         config.allowUnfree = true;                              # Allow proprietary software
     };
 
+    unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+    };
+
     lib = nixpkgs.lib;
 in
 {
     desktop = lib.nixosSystem {                               # Desktop profile
         inherit system;
         specialArgs = {
-            inherit inputs system user location hyprland;
+            inherit inputs unstable system user location;
             host = {
                 hostName = "ryan-desktop";
             };
         };                                                      # Pass flake variable
         modules = [                                             # Modules that are used.
-            hyprland.nixosModules.default
+            # hyprland.nixosModules.default
             ./desktop
             ./configuration.nix
 
@@ -59,14 +64,14 @@ in
     laptop = lib.nixosSystem {                                # Laptop profile
         inherit system;
         specialArgs = {
-            inherit inputs user location;
+            inherit inputs unstable user location;
             host = {
                 hostName = "ryan-yoga";
                 mainMonitor = "eDP-1";
             };
         };
         modules = [
-            hyprland.nixosModules.default
+            # hyprland.nixosModules.default
             ./laptop
             ./configuration.nix
 

@@ -11,9 +11,10 @@
 #           └─ default.nix
 #
 
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, unstable, user, ... }:
 
 {
+    imports = (import ../modules/programs);
     home = {
         username = "${user}";
         homeDirectory = "/home/${user}";
@@ -35,8 +36,6 @@
             nextcloud-client
             obsidian
             vscode
-            thunderbird
-            distrobox
 
             # File Management
             okular            # PDF Viewer
@@ -95,7 +94,7 @@
             package = pkgs.numix-icon-theme-circle;
         };
         font = {
-            name = "JetBrains Mono Medium";
+            name = "Roboto";
         };                                        # Cursor is declared under home.pointerCursor
     };
     qt = {

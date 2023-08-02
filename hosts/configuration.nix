@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, user, inputs, ... }:
+{ config, pkgs, unstable, user, inputs, ... }:
 
 {
     users.users.${user} = {                             # System User
@@ -40,7 +40,7 @@
     programs.zsh.enable = true;
     programs.seahorse.enable = true;
 
-    fonts.packages = with pkgs; [
+    fonts.fonts = with pkgs; [
 		jetbrains-mono
 		meslo-lgs-nf
 		noto-fonts
@@ -66,7 +66,10 @@
             polkit_gnome
             usbutils
             wget
-        ];
+        ] ++ (with unstable; [
+            distrobox
+            thunderbird
+        ]);
     };
 
     services = {
