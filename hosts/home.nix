@@ -24,6 +24,8 @@
             htop              # Resource Manager
             ranger            # File Manager
             tldr              # Helper
+            gcc
+
 
             # Video/Audio
             feh               # Image Viewer
@@ -35,7 +37,7 @@
             brave              # Browser
             nextcloud-client
             obsidian
-            vscode
+            #vscode
 
             # File Management
             okular            # PDF Viewer
@@ -45,6 +47,7 @@
             unrar             # Rar Files
             zip               # Zip
             qt5ct
+            neofetch
 
             # General home-manager
             kitty        # Terminal Emulator
@@ -63,13 +66,16 @@
             thunar
             thunar-volman
             thunar-archive-plugin
+        ]) ++ (with unstable; [
+            distrobox
+            thunderbird
         ]);
 
 
         pointerCursor = {                         # This will set cursor system-wide so applications can not choose their own
             gtk.enable = true;
             name = "Bibata-Modern-Ice";
-            package = pkgs.bibata-cursor;
+            package = pkgs.bibata-cursors;
         };
         stateVersion = "23.05";
     };

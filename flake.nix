@@ -10,24 +10,24 @@
 
     inputs =                                                                  # All flake references used to build my NixOS setup. These are dependencies.
         {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";                     # Default Stable Nix Packages
-        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+            nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";                     # Default Stable Nix Packages
+            nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-        home-manager = {                                                      # User Package Management
-            url = "github:nix-community/home-manager/release-23.05";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+            home-manager = {                                                      # User Package Management
+                url = "github:nix-community/home-manager/release-23.05";
+                inputs.nixpkgs.follows = "nixpkgs";
+            };
 
-        #hyprland = {                                                          # Official Hyprland flake
-        #    url = "github:vaxerski/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
-        #    inputs.nixpkgs.follows = "nixpkgs";
-        #};
+            #hyprland = {                                                          # Official Hyprland flake
+            #    url = "github:vaxerski/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
+            #    inputs.nixpkgs.follows = "nixpkgs";
+            #};
 
-        plasma-manager = {                                                    # KDE Plasma user settings
-            url = "github:pjones/plasma-manager";                               # Add "inputs.plasma-manager.homeManagerModules.plasma-manager" to the home-manager.users.${user}.imports
-            inputs.nixpkgs.follows = "nixpkgs";
-            inputs.home-manager.follows = "nixpkgs";
-        };
+            plasma-manager = {                                                    # KDE Plasma user settings
+                url = "github:pjones/plasma-manager";                               # Add "inputs.plasma-manager.homeManagerModules.plasma-manager" to the home-manager.users.${user}.imports
+                inputs.nixpkgs.follows = "nixpkgs";
+                inputs.home-manager.follows = "nixpkgs";
+            };
         };
 
     outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, plasma-manager, ... }:   # Function that tells my flake which to use and what do what to do with the dependencies.

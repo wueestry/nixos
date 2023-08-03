@@ -1,4 +1,18 @@
 {pkgs, ... }:
+let
+    vscode-ros = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+      name = "vscode-ros";
+      publisher = "ms-iot";
+      version = "0.9.4";
+      sha256 = "sha256-wQgJx5Ey93uvqZva18mqn2pEFjS6lXMjrjR8xSAMwN4=";
+    };
+    vscode-remote-containers = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+        name = "remote-containers";
+        publisher = "ms-vscode-remote";
+        version = "0.305.0";
+        sha256 = "sha256-srSRD/wgDbQo9P1uJk8YtcXPZO62keG5kRnp1TmHqOc=";
+    };
+in
 {
     programs.vscode = {
         enable = true;
@@ -14,6 +28,9 @@
             ms-vscode.cpptools
             vscode-icons-team.vscode-icons
             vscodevim.vim
+        ] ++ [
+            vscode-ros
+            vscode-remote-containers
         ];
         userSettings = {
             "vsicons.dontShowNewVersionMessage" = true;

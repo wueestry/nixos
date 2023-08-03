@@ -66,10 +66,7 @@
             polkit_gnome
             usbutils
             wget
-        ] ++ (with unstable; [
-            distrobox
-            thunderbird
-        ]);
+        ];
     };
 
     services = {
