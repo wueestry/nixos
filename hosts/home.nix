@@ -52,6 +52,7 @@
             libnotify        # Dependency for Dunst
             rofi-wayland             # Menu
             rofi-power-menu  # Power Menu
+            networkmanagerapplet
 
             # Desktop
             steam            # Games
@@ -67,9 +68,8 @@
 
         pointerCursor = {                         # This will set cursor system-wide so applications can not choose their own
             gtk.enable = true;
-            name = "Numix-Cursor";
-            package = pkgs.numix-cursor-theme;
-            size = 16;
+            name = "Bibata-Modern-Ice";
+            package = pkgs.bibata-cursor;
         };
         stateVersion = "23.05";
     };
@@ -85,8 +85,12 @@
 
     gtk = {                                     # Theming
         enable = true;
+        cursorTheme = {
+            package = pkgs.bibata-cursors;
+            name = "Bibata-Modern-Ice";
+        };
         theme = {
-            name = "Nordic";
+            name = "Nordic-darker";
             package = pkgs.nordic;
         };
         iconTheme = {
@@ -99,6 +103,7 @@
     };
     qt = {
         enable = true;
+        platformTheme = "gtk";
         style = {
             name = "Nordic";
             package = pkgs.nordic;
