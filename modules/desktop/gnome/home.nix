@@ -10,7 +10,6 @@
     home.packages = with pkgs; [
         gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.blur-my-shell
-        gnomeExtensions.dash-to-panel
         gnomeExtensions.battery-indicator-upower
         gnomeExtensions.just-perfection
         gnomeExtensions.caffeine
