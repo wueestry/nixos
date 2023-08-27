@@ -34,7 +34,7 @@
 
             # Apps
             firefox          # Browser
-            brave              # Browser
+            librewolf              # Browser
             nextcloud-client
             obsidian
             #vscode
@@ -69,6 +69,7 @@
         ]) ++ (with unstable; [
             distrobox
             thunderbird
+            nwg-displays
         ]);
 
 

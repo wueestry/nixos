@@ -5,29 +5,25 @@
 { config, lib, pkgs, ... }:
 
 {
-  services = {
-    xserver = {
-      displayManager = {
-        sddm.enable = true;          # Display Manager
-        defaultSession = "plasmawayland";
-      };
-      desktopManager.plasma5 = {
-        enable = true;                            # Desktop Manager
-        excludePackages = with pkgs.libsForQt5; [
-          elisa
-          khelpcenter
-          konsole
-          oxygen
-        ];
-      };
+    services = {
+        xserver = {
+            desktopManager.plasma5 = {
+                enable = true;                            # Desktop Manager
+            };
+        };
     };
-  };
 
-  environment = {
-    systemPackages = with pkgs.libsForQt5; [                 # Packages installed
-      packagekit-qt
-      bismuth
-    ];
+    environment = {
+        plasma5.excludePackages = with pkgs.libsForQt5; [
+            elisa
+            khelpcenter
+            konsole
+            oxygen
+        ];
+        systemPackages = with pkgs.libsForQt5; [                 # Packages installed
+            packagekit-qt
+            bismuth
+        ];
 
-  };
+    };
 }

@@ -22,6 +22,7 @@
     imports =                                               # For now, if applying to other system, swap files
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
+        [(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);  # Docker
 
     boot = {                                  # Boot options

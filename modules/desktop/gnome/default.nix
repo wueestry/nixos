@@ -6,7 +6,6 @@
 
 {
     programs = {
-        dconf.enable = true;
         kdeconnect = {
             enable = true;
             package = pkgs.gnomeExtensions.gsconnect;
@@ -28,8 +27,16 @@
         ];
         gnome.excludePackages = (with pkgs; [         # Gnome ignored packages
             gnome-tour
+            gnome-photos
         ]) ++ (with pkgs.gnome; [
-            
+            cheese
+            gnome-music
+            gnome-terminal
+            gedit
+            epiphany
+            geary
+            evince
+            totem
         ]);
     };
 }
