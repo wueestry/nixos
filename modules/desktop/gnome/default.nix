@@ -28,6 +28,7 @@
         gnome.excludePackages = (with pkgs; [         # Gnome ignored packages
             gnome-tour
             gnome-photos
+            gnome-text-editor
         ]) ++ (with pkgs.gnome; [
             cheese
             gnome-music
@@ -37,6 +38,8 @@
             geary
             evince
             totem
+            gnome-system-monitor
+            gnome-calendar
         ]);
     };
 }

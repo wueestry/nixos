@@ -87,15 +87,6 @@
                 userServices = true;
             };
         };
-        #pipewire = {                                # Sound
-        #    enable = true;
-        #    alsa = {
-        #        enable = true;
-        #        support32Bit = true;
-        #    };
-        #    pulse.enable = true;
-        #    jack.enable = true;
-        #};
         tailscale.enable = true;
         gnome.gnome-keyring.enable = true;
         gvfs.enable = true;

@@ -6,6 +6,10 @@
             # Applications
             gparted
             spotify
-        ];
+        ]++ (with pkgs.xfce; [
+            thunar
+            thunar-volman
+            thunar-archive-plugin
+        ]);
     };
 }

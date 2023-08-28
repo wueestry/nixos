@@ -10,13 +10,11 @@
     home.packages = with pkgs; [
         gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.blur-my-shell
-        gnomeExtensions.battery-indicator-upower
         gnomeExtensions.just-perfection
         gnomeExtensions.caffeine
-        gnomeExtensions.workspace-indicator-2
+        gnomeExtensions.dotspaces
         gnomeExtensions.bluetooth-quick-connect
         gnomeExtensions.gsconnect                         # kdeconnect enabled in default.nix
-        gnomeExtensions.pip-on-top
         gnomeExtensions.pop-shell
     ];
 }

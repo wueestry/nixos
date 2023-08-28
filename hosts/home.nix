@@ -22,7 +22,6 @@
         packages = (with pkgs; [
             # Terminal
             htop              # Resource Manager
-            ranger            # File Manager
             tldr              # Helper
             gcc
 
@@ -62,10 +61,6 @@
             
             # Laptop
             libreoffice      # Office Tools
-        ]) ++ (with pkgs.xfce; [
-            thunar
-            thunar-volman
-            thunar-archive-plugin
         ]) ++ (with unstable; [
             distrobox
             thunderbird
