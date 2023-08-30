@@ -22,7 +22,7 @@
     imports =                                               # For now, if applying to other system, swap files
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
-        [(import ../../modules/desktop/gnome)] ++
+        #[(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);  # Docker
 
     boot = {                                  # Boot options
@@ -99,6 +99,11 @@
         xserver = {
             # Enable the X11 windowing system.
             enable = true;
+
+            displayManager.gdm = {
+                enable = true;
+                wayland = true;
+            };
 
             # Enable NVIDIA driver
             videoDrivers = [ "nvidia" ];

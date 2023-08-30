@@ -65,6 +65,10 @@
             distrobox
             thunderbird
             nwg-displays
+        ]) ++ (with pkgs.xfce; [
+            thunar
+            thunar-volman
+            thunar-archive-plugin
         ]);
 
 

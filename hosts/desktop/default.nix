@@ -64,11 +64,16 @@
     };
 
     services = {
-        blueman.enable = true;                      # Bluetooth
+        blueman.enable = true;                    # Bluetooth
 
         xserver = {
             # Enable the X11 windowing system.
             enable = true;
+
+            displayManager.gdm = {
+                enable = true;
+                wayland = true;
+            };
 
             # Enable NVIDIA driver
             videoDrivers = [ "nvidia" ];

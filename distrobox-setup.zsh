@@ -30,6 +30,21 @@ elif [[ $1 == "humble" ]]; then
 
     sudo apt install ros-humble-desktop -y
     sudo apt install ros-dev-tools -y
+elif [[ $1 == "zsh" ]]; then
+    echo "Add the following lines to the .zshrc"
+    echo '''
+        distro=$(lsb_release -sc)
+        if [[ $distro == "focal" ]]; then
+            # ROS Noetic config
+            source /opt/ros/noetic/setup.zsh
+            source ~/catkin_ws/devel/setup.zsh
+        elif [[ $distro == "jammy" ]]; then
+            # ROS Humble config
+            source /opt/ros/humble/setup.zsh
+        fi
+    '''
+
+
 
 else
     echo "Select a correct version"
