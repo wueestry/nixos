@@ -22,7 +22,7 @@
     imports =                                               # For now, if applying to other system, swap files
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
-        #[(import ../../modules/desktop/gnome)] ++
+        [(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);  # Docker
 
     boot = {                                  # Boot options
@@ -72,7 +72,7 @@
 
     environment = {
         systemPackages = with pkgs; [
-        simple-scan
+            simple-scan
         ];
     };
 
@@ -96,6 +96,15 @@
                 userServices = true;
             };
         };
+        #greetd = {
+        #    enable = true;
+        #    settings = {
+        #        default_session = {
+        #            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        #            user = "ryan";
+        #        };
+        #    };
+        #};
         xserver = {
             # Enable the X11 windowing system.
             enable = true;

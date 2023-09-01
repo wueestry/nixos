@@ -16,5 +16,6 @@
         gsconnect                         # kdeconnect enabled in default.nix
         pop-shell
         appindicator
+        alphabetical-app-grid
     ];
 }

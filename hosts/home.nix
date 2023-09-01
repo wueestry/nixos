@@ -24,6 +24,7 @@
             htop              # Resource Manager
             tldr              # Helper
             gcc
+	    nodejs
 
 
             # Video/Audio
@@ -69,6 +70,7 @@
             thunar
             thunar-volman
             thunar-archive-plugin
+            thunar-media-tags-plugin
         ]);
 
 

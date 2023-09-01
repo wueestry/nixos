@@ -44,6 +44,15 @@
             driSupport = true;
             driSupport32Bit = true;
 	    };
+        pipewire = {                                # Sound
+            enable = true;
+            alsa = {
+                enable = true;
+                support32Bit = true;
+            };
+            pulse.enable = true;
+            jack.enable = true;
+        };
         nvidia = {
             # Modesetting is needed for most wayland compositors
             modesetting.enable = true;

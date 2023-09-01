@@ -33,13 +33,18 @@
             cheese
             gnome-music
             gnome-terminal
+            gnome-maps
+            gnome-contacts
             gedit
             epiphany
             geary
+            nautilus
             evince
+            eog
             totem
             gnome-system-monitor
             gnome-calendar
+            yelp
         ]);
     };
 }
