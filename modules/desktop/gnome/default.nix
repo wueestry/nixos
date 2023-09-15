@@ -10,6 +10,7 @@
             enable = true;
             package = pkgs.gnomeExtensions.gsconnect;
         };
+        seahorse.enable = true;
     };
 
     services = {
@@ -19,11 +20,17 @@
         ];
     };
 
+    security.pam.services.gdm.enableGnomeKeyring = true;
+
+    services.gnome.gnome-keyring.enable = true;
+
+
     environment = {
         systemPackages = with pkgs; [                 # Packages installed
             gnome.dconf-editor
             gnome.gnome-tweaks
             gnome.adwaita-icon-theme
+            polkit_gnome
         ];
         gnome.excludePackages = (with pkgs; [         # Gnome ignored packages
             gnome-tour

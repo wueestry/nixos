@@ -21,9 +21,13 @@
             oxygen
         ];
         systemPackages = with pkgs.libsForQt5; [                 # Packages installed
-            packagekit-qt
             bismuth
+            kwallet
+            packagekit-qt
+            qtstyleplugin-kvantum
         ];
 
     };
+    security.pam.services.gdm.enableKwallet = true;
+
 }

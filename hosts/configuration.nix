@@ -38,7 +38,6 @@
     boot.supportedFilesystems = [ "ntfs" ];
 
     programs.zsh.enable = true;
-    programs.seahorse.enable = true;
 
     fonts.fonts = with pkgs; [
 		jetbrains-mono
@@ -63,7 +62,6 @@
             lsb-release
             neovim
             pciutils
-            polkit_gnome
             usbutils
             wget
         ];
@@ -72,7 +70,6 @@
     services = {
         printing = {                                # Printing and drivers for TS5300
             enable = true;
-            #drivers = [ pkgs.cnijfilter2 ];        # There is the possibility cups will complain about missing cmdtocanonij3. I guess this is just an error that can be ignored for now. Also no longer need required since server uses ipp to share printer over network.
         };
         avahi = {                                   # Needed to find wireless printer
             enable = true;
@@ -84,27 +81,25 @@
             };
         };
         tailscale.enable = true;
-        gnome.gnome-keyring.enable = true;
         gvfs.enable = true;
     };
 
-    security.pam.services.gdm.enableGnomeKeyring = true;
 
-    systemd = { # Starting polkit at login
-        user.services.polkit-gnome-authentication-agent-1 = {
-            description = "polkit-gnome-authentication-agent-1";
-            wantedBy = [ "graphical-session.target" ];
-            wants = [ "graphical-session.target" ];
-            after = [ "graphical-session.target" ];
-            serviceConfig = {
-                Type = "simple";
-                ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-                Restart = "on-failure";
-                RestartSec = 1;
-                TimeoutStopSec = 10;
-            };
-        };
-    };
+    # systemd = { # Starting polkit at login
+    #     user.services.polkit-gnome-authentication-agent-1 = {
+    #         description = "polkit-gnome-authentication-agent-1";
+    #         wantedBy = [ "graphical-session.target" ];
+    #         wants = [ "graphical-session.target" ];
+    #         after = [ "graphical-session.target" ];
+    #         serviceConfig = {
+    #             Type = "simple";
+    #             ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    #             Restart = "on-failure";
+    #             RestartSec = 1;
+    #             TimeoutStopSec = 10;
+    #         };
+    #     };
+    # };
 
     nix = {                                         # Nix Package Manager settings
         settings ={

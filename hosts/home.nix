@@ -14,17 +14,17 @@
 { config, lib, pkgs, unstable, user, ... }:
 
 {
-    imports = (import ../modules/programs);
+    imports = (import ../modules/programs);   
     home = {
         username = "${user}";
         homeDirectory = "/home/${user}";
 
         packages = (with pkgs; [
             # Terminal
-            htop              # Resource Manager
-            tldr              # Helper
             gcc
-	    nodejs
+            htop              # Resource Manager
+            nodejs
+            tldr              # Helper
 
 
             # Video/Audio
@@ -33,44 +33,41 @@
             pavucontrol       # Audio Control
 
             # Apps
-            firefox          # Browser
-            librewolf              # Browser
+            brave          # Browser
+            librewolf       # Browser
             nextcloud-client
             obsidian
             #vscode
 
             # File Management
+            neofetch
             okular            # PDF Viewer
             p7zip             # Zip Encryption
-            rsync             # Syncer - $ rsync -r dir1/ dir2/
-            unzip             # Zip Files
-            unrar             # Rar Files
-            zip               # Zip
             qt5ct
-            neofetch
+            rsync             # Syncer - $ rsync -r dir1/ dir2/
+            unrar             # Rar Files
+            unzip             # Zip Files
+            zip               # Zip
 
             # General home-manager
-            kitty        # Terminal Emulator
             dunst            # Notifications
+            kitty        # Terminal Emulator
             libnotify        # Dependency for Dunst
-            rofi-wayland             # Menu
-            rofi-power-menu  # Power Menu
             networkmanagerapplet
+            rofi-power-menu  # Power Menu
+            rofi-wayland             # Menu
 
             # Desktop
             steam            # Games
             
             # Laptop
             libreoffice      # Office Tools
+
+            simple-scan
         ]) ++ (with unstable; [
             distrobox
-            thunderbird
             nwg-displays
-        ]) ++ (with pkgs.xfce; [
-            thunar
-            thunar-volman
-            thunar-archive-plugin
-            thunar-media-tags-plugin
+            thunderbird
         ]);
 
 
@@ -111,7 +108,6 @@
     };
     qt = {
         enable = true;
-        platformTheme = "gtk";
         style = {
             name = "Nordic";
             package = pkgs.nordic;

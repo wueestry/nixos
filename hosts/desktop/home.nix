@@ -8,8 +8,8 @@
             spotify
         ]++ (with pkgs.xfce; [
             thunar
-            thunar-volman
             thunar-archive-plugin
+            thunar-volman
         ]);
     };
 }

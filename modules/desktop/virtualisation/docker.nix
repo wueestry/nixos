@@ -6,7 +6,10 @@
 
 {
     virtualisation = {
-        docker.enable = true;
+        docker = {
+            enable = true;
+            enableNvidia = true;
+        };
     };
 
     users.groups.docker.members = [ "${user}" ];

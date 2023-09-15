@@ -1,13 +1,14 @@
 { pkgs, ... }:
 
 {
-    imports = [(import ../../modules/desktop/gnome/home.nix)];
-    home = {                                # Specific packages for laptop
+    imports = [(import ../../modules/desktop/kde/home.nix)];
+    home = {                       # Specific packages for laptop
         packages = with pkgs; [
             # Applications
-            light
+            appimage-run
+            lshw
+            slack
             spotify
-	    zoom-us
         ];
     };
 }

@@ -34,6 +34,9 @@
         };
     };
 
+    programs.seahorse.enable = true;
+
+
     hardware = {
         sane = {                                    # Used for scanning with Xsane
             enable = true;
@@ -64,13 +67,18 @@
             # Enable the nvidia settings menu
             nvidiaSettings = true;
         };
+        gnome.gnome-keyring.enable = true;
+
     };
 
     environment = {                               # Packages installed system wide
         systemPackages = with pkgs; [               # This is because some options need to be configured.
-            simple-scan
+            polkit_gnome
         ];
     };
+    
+    security.pam.services.gdm.enableGnomeKeyring = true;
+
 
     services = {
         blueman.enable = true;                    # Bluetooth

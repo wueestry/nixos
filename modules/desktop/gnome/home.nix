@@ -8,14 +8,14 @@
 
 {
     home.packages = with pkgs.gnomeExtensions; [
+        alphabetical-app-grid
+        appindicator
+        bluetooth-quick-connect
         blur-my-shell
-        just-perfection
         caffeine
         dotspaces
-        bluetooth-quick-connect
         gsconnect                         # kdeconnect enabled in default.nix
+        just-perfection
         pop-shell
-        appindicator
-        alphabetical-app-grid
     ];
 }
