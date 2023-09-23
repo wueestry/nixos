@@ -22,6 +22,7 @@
     imports =
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
+        [(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);     # Virtual Machines & VNC
 
     boot.loader = {                                      # Boot options
@@ -38,6 +39,7 @@
 
 
     hardware = {
+        pulseaudio.enable = false;
         sane = {                                    # Used for scanning with Xsane
             enable = true;
             extraBackends = [ pkgs.sane-airscan ];
@@ -47,15 +49,6 @@
             driSupport = true;
             driSupport32Bit = true;
 	    };
-        pipewire = {                                # Sound
-            enable = true;
-            alsa = {
-                enable = true;
-                support32Bit = true;
-            };
-            pulse.enable = true;
-            jack.enable = true;
-        };
         nvidia = {
             # Modesetting is needed for most wayland compositors
             modesetting.enable = true;
@@ -67,7 +60,6 @@
             # Enable the nvidia settings menu
             nvidiaSettings = true;
         };
-        gnome.gnome-keyring.enable = true;
 
     };
 

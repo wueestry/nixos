@@ -64,6 +64,8 @@
             libreoffice      # Office Tools
 
             simple-scan
+            appimage-run    # Tool to run appimages
+            lshw            # Tool to get hardware info
         ]) ++ (with unstable; [
             distrobox
             nwg-displays
