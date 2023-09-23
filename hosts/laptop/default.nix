@@ -22,7 +22,7 @@
     imports =                                               # For now, if applying to other system, swap files
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
-        [(import ../../modules/desktop/kde)] ++
+        [(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);  # Docker
 
     boot = {                                  # Boot options
@@ -36,8 +36,8 @@
             };
             timeout = 5;                              # Grub auto select time
         };
-        initrd.kernelModules = [ "nvidia" ];
-        extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+        # initrd.kernelModules = [ "nvidia" ];
+        # extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
     };
 
     sound.enable = true;
@@ -104,21 +104,21 @@
         };
         pipewire = {
             enable = true;
-            alsa.enable = true;
-            alsa.support32Bit = true;
+            alsa = {
+                enable = true;
+                support32Bit = true;
+            };
             pulse.enable = true;
-            # If you want to use JACK applications, uncomment this
-            #jack.enable = true;
-
-            # use the example session manager (no others are packaged yet so this is enabled by default,
-            # no need to redefine it in your config for now)
-            #media-session.enable = true;
+            jack.enable = true;
         };
         xserver = {
             # Enable the X11 windowing system.
             enable = true;
 
-	        displayManager.gdm.enable = true;
+	        displayManager.gdm = {
+                enable = true;
+                wayland = true;
+            };
 
             # Enable NVIDIA driver
             videoDrivers = [ "nvidia" ];
