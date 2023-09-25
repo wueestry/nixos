@@ -81,7 +81,6 @@
 
             displayManager.gdm = {
                 enable = true;
-                wayland = true;
             };
 
             # Enable NVIDIA driver

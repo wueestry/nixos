@@ -22,7 +22,8 @@
         packages = (with pkgs; [
             # Terminal
             gcc
-            htop              # Resource Manager
+            python3
+            btop              # Resource Manager
             nodejs
             tldr              # Helper
 

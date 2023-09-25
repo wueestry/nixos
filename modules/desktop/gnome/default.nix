@@ -45,7 +45,6 @@
             gedit
             epiphany
             geary
-            nautilus
             evince
             eog
             totem

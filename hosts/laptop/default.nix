@@ -114,14 +114,13 @@
         xserver = {
             # Enable the X11 windowing system.
             enable = true;
-
-	        displayManager.gdm = {
+            displayManager.gdm = {
                 enable = true;
-                wayland = true;
+                wayland  = true;
             };
 
             # Enable NVIDIA driver
-            videoDrivers = [ "nvidia" ];
+            videoDrivers = [ "modesetting" ];
 
             # Keyboard layout
             layout = "ch";

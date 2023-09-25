@@ -2,13 +2,19 @@
 # KDE Plasma 5 configuration
 #
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, unstable, ... }:
 
 {
     services = {
         xserver = {
             desktopManager.plasma5 = {
                 enable = true;                            # Desktop Manager
+            };
+            displayManager.defaultSession = "plasmawayland";
+            displayManager.sddm = {
+                enable = true;
+                enableHidpi = true;
+                theme = "chili";
             };
         };
     };
@@ -25,9 +31,11 @@
             kwallet
             packagekit-qt
             qtstyleplugin-kvantum
-        ];
+        ] ++ (with unstable; [
+            sddm-chili-theme
+        ]);
 
     };
-    security.pam.services.gdm.enableKwallet = true;
+    security.pam.services.sddm.enableKwallet = true;
 
 }
