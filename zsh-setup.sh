@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Manual setup for zsh plugins via oh-my-zsh required to work correctly in distrobox
-
+# When using Fedora make zsh default by using `sudo lchsh $USER` and then `/bin/zsh`
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
