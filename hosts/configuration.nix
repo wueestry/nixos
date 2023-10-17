@@ -44,6 +44,7 @@
 		meslo-lgs-nf
 		noto-fonts
 		roboto
+        corefonts
 	];
     
     hardware.bluetooth.enable = true;
