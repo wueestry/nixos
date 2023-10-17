@@ -1,16 +1,22 @@
 { pkgs, ... }:
 
 {
-    imports = [(import ../../modules/desktop/gnome/home.nix)];
+    #imports = [(import ../../modules/desktop/gnome/home.nix)];
     home = {                       # Specific packages for laptop
         packages = with pkgs; [
             # Applications
-            slack
-            spotify
             blender
+            freetube
             gimp
             logseq
-	        freetube
-        ];
+            slack
+            spotify
+            xorg.xhost
+            zoom-us
+        ]++ (with pkgs.xfce; [
+            thunar
+            thunar-archive-plugin
+            thunar-volman
+        ]);
     };
 }

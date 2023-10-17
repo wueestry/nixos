@@ -22,7 +22,8 @@
     imports =                                               # For now, if applying to other system, swap files
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
-        [(import ../../modules/desktop/gnome)] ++
+        [(import ../../modules/programs/gnome-polkit.nix)] ++
+        #[(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);  # Docker
 
     boot = {                                  # Boot options
@@ -62,7 +63,7 @@
 
             # Use the open source version of the kernel module
             # Only available on driver 515.43.04+
-            open = false;
+            open = true;
 
             # Enable the nvidia settings menu
             nvidiaSettings = true;
@@ -76,10 +77,16 @@
         };
     };
 
-    # environment = {
-    #     systemPackages = with pkgs; [
-    #     ];
-    # };
+    environment = {
+        systemPackages = with pkgs; [
+            cudaPackages.cudatoolkit
+        ];
+    };
+
+    systemd.services.nvidia-control-devices = {
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.ExecStart = "${pkgs.linuxPackages.nvidia_x11.bin}/bin/nvidia-smi";
+    };
 
     programs = {                              # No xbacklight, this is the alterantive
         dconf.enable = true;
@@ -120,7 +127,8 @@
             };
 
             # Enable NVIDIA driver
-            videoDrivers = [ "modesetting" ];
+            #videoDrivers = [ "modesetting" ];
+            videoDrivers = ["nvidia"];
 
             # Keyboard layout
             layout = "ch";
