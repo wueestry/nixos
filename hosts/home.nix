@@ -20,13 +20,16 @@
         homeDirectory = "/home/${user}";
 
         packages = (with pkgs; [
+            coreutils
+            
             # Terminal
             gcc
+            cmake
             python3
             btop              # Resource Manager
             nodejs
             tldr              # Helper
-
+            gnumake
 
             # Video/Audio
             feh               # Image Viewer
@@ -67,6 +70,7 @@
             simple-scan
             appimage-run    # Tool to run appimages
             lshw            # Tool to get hardware info
+	        libsForQt5.qtstyleplugin-kvantum
         ]) ++ (with unstable; [
             distrobox
             nwg-displays
