@@ -13,10 +13,6 @@
             spotify
             xorg.xhost
             zoom-us
-        ]++ (with pkgs.xfce; [
-            thunar
-            thunar-archive-plugin
-            thunar-volman
-        ]);
+        ];
     };
 }

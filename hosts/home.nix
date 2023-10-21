@@ -52,6 +52,9 @@
             unrar             # Rar Files
             unzip             # Zip Files
             zip               # Zip
+            fzf
+            ranger
+            xarchiver
 
             # General home-manager
             dunst            # Notifications
@@ -66,6 +69,7 @@
             
             # Laptop
             libreoffice      # Office Tools
+            thunderbird
 
             simple-scan
             appimage-run    # Tool to run appimages
@@ -74,7 +78,6 @@
         ]) ++ (with unstable; [
             distrobox
             nwg-displays
-            thunderbird
         ]);
 
 

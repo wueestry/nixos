@@ -61,7 +61,7 @@
             gvfs
             killall
             lsb-release
-            neovim
+            # neovim
             pciutils
             usbutils
             wget

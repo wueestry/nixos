@@ -22,7 +22,7 @@
     imports =                                               # For now, if applying to other system, swap files
         [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
         [(import ../../modules/desktop/hyprland)] ++ # Window Manager
-        [(import ../../modules/programs/gnome-polkit.nix)] ++
+        [(import ../../modules/desktop/gnome/gnome-polkit.nix)] ++
         #[(import ../../modules/desktop/gnome)] ++
         (import ../../modules/desktop/virtualisation);  # Docker
 
@@ -59,7 +59,8 @@
             # Modesetting is needed for most wayland compositors
             modesetting.enable = true;
 
-            powerManagement.enable = true;
+            # powerManagement.enable = true;
+            # powerManagement.finegrained = true;
 
             # Use the open source version of the kernel module
             # Only available on driver 515.43.04+
@@ -91,6 +92,15 @@
     programs = {                              # No xbacklight, this is the alterantive
         dconf.enable = true;
         light.enable = true;
+        
+        thunar  = {
+            enable = true;
+            plugins = with pkgs.xfce; [
+                thunar-archive-plugin
+                thunar-volman
+                thunar-media-tags-plugin
+            ];
+        };
     };
 
 
