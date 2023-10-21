@@ -1,20 +1,17 @@
-#
 # Docker
 #
 
 { config, pkgs, user, ... }:
 
 {
-    virtualisation = {
-        docker = {
-            enable = true;
-            enableNvidia = true;
-        };
+  virtualisation = {
+    docker = {
+      enable = true;
+      enableNvidia = true;
     };
+  };
 
-    users.groups.docker.members = [ "${user}" ];
+  users.groups.docker.members = [ "${user}" ];
 
-    environment.systemPackages = with pkgs; [
-        docker-compose
-    ];
+  environment.systemPackages = with pkgs; [ docker-compose ];
 }

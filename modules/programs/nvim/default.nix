@@ -1,103 +1,109 @@
 { config, pkgs, ... }:
 let
-    toLua = str: "lua << EOF\n${str}\nEOF\n";
-    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-in
-{
-    home.packages = with pkgs; [
-            lua-language-server
-            rnix-lsp
+  toLua = str: ''
+    lua << EOF
+    ${str}
+    EOF
+  '';
+  toLuaFile = file: ''
+    lua << EOF
+    ${builtins.readFile file}
+    EOF
+  '';
+in {
+  home.packages = with pkgs; [
+    lua-language-server
+    rnix-lsp
 
-            # Nix formatter
-            nixfmt
+    # Nix formatter
+    nixfmt
 
-            xclip
-            wl-clipboard
-        ];
+    xclip
+    wl-clipboard
+  ];
 
-    programs.neovim = {
-        enable = true;
+  programs.neovim = {
+    enable = true;
 
-        viAlias = true;
-        vimAlias = true;
-        vimdiffAlias = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
 
-        plugins = with pkgs.vimPlugins; [
-            # Git
-            vim-fugitive
-            vim-rhubarb
+    plugins = with pkgs.vimPlugins; [
+      # Git
+      vim-fugitive
+      vim-rhubarb
 
-            # Detect tabstop and shiftwidth automatically
-            vim-sleuth
+      # Detect tabstop and shiftwidth automatically
+      vim-sleuth
 
-            # Theme
-            {
-                plugin = nordic-nvim;
-                config = "colorscheme nordic";
-            }
+      # Theme
+      {
+        plugin = nordic-nvim;
+        config = "colorscheme nordic";
+      }
 
-            # LSP config
-            {
-                plugin = nvim-lspconfig;
-                config = toLuaFile ./plugins/lsp.lua;
-            }
+      # LSP config
+      {
+        plugin = nvim-lspconfig;
+        config = toLuaFile ./plugins/lsp.lua;
+      }
 
-            # Additional lua configuration, makes nvim stuff amazing!
-            neodev-nvim
+      # Additional lua configuration, makes nvim stuff amazing!
+      neodev-nvim
 
-            # Autocomplete
-            {
-                plugin = nvim-cmp;
-                config = toLuaFile ./plugins/cmp.lua;
-            }
-            # Snippet Engine & its associated nvim-cmp source
-            luasnip
-            cmp_luasnip
+      # Autocomplete
+      {
+        plugin = nvim-cmp;
+        config = toLuaFile ./plugins/cmp.lua;
+      }
+      # Snippet Engine & its associated nvim-cmp source
+      luasnip
+      cmp_luasnip
 
-            # Adds LSP completion capabilities to autocomplete
-            cmp-nvim-lsp
+      # Adds LSP completion capabilities to autocomplete
+      cmp-nvim-lsp
 
-            # Adds a number of user-friendly snippets
-            friendly-snippets
+      # Adds a number of user-friendly snippets
+      friendly-snippets
 
-            # Show you pending keybinds
-            which-key-nvim
+      # Show you pending keybinds
+      which-key-nvim
 
-            # Statusbar
-            {
-                plugin = lualine-nvim;
-                config = toLuaFile ./plugins/lualine.lua;
-            }
-            nvim-web-devicons
+      # Statusbar
+      {
+        plugin = lualine-nvim;
+        config = toLuaFile ./plugins/lualine.lua;
+      }
+      nvim-web-devicons
 
-            # Add indentation guides even on blank lines
-            {
-                plugin = indent-blankline-nvim;
-                config = toLua "require('indent_blankline').setup()";
-            }
+      # Add indentation guides even on blank lines
+      {
+        plugin = indent-blankline-nvim;
+        config = toLua "require('indent_blankline').setup()";
+      }
 
-            # Fuzzy Finder (files, lsp, etc)
-            {
-                plugin = telescope-nvim;
-                config = toLuaFile ./plugins/telescope.lua;
-            }
-            telescope-fzf-native-nvim
+      # Fuzzy Finder (files, lsp, etc)
+      {
+        plugin = telescope-nvim;
+        config = toLuaFile ./plugins/telescope.lua;
+      }
+      telescope-fzf-native-nvim
 
-            # Highlight, edit, and navigate code
-            {
-                plugin = nvim-treesitter.withAllGrammars;
-                config = toLuaFile ./plugins/treesitter.lua;
-            }
+      # Highlight, edit, and navigate code
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        config = toLuaFile ./plugins/treesitter.lua;
+      }
 
-            # Better support for nix files
-            vim-nix
+      # Better support for nix files
+      vim-nix
 
+    ];
 
-        ];
-
-        extraLuaConfig = ''
-            ${builtins.readFile ./options.lua}
-        '';
-    };
+    extraLuaConfig = ''
+      ${builtins.readFile ./options.lua}
+    '';
+  };
 
 }

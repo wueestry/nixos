@@ -1,5 +1,4 @@
-#
-#  Specific system configuration settings for desktop
+# Specific system configuration settings for desktop
 #
 #  flake.nix
 #   ├─ ./hosts
@@ -11,7 +10,4 @@
 #               └─ default.nix *
 #
 
-[
-  ./docker.nix
-  ./virt_manager.nix
-]
+[ ./docker.nix ./virt_manager.nix ]

@@ -1,17 +1,12 @@
-#
 # Virt-Manager
 #
 
 { config, pkgs, user, ... }:
 
 {
-    virtualisation = {
-        libvirtd.enable = true;
-    };
+  virtualisation = { libvirtd.enable = true; };
 
-    programs.dconf.enable = true;
+  programs.dconf.enable = true;
 
-    environment.systemPackages = with pkgs; [
-        virt-manager
-    ];
+  environment.systemPackages = with pkgs; [ virt-manager ];
 }

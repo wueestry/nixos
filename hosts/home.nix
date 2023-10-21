@@ -1,5 +1,4 @@
-#
-#  General Home-manager configuration
+# General Home-manager configuration
 #
 #  flake.nix
 #   ├─ ./hosts
@@ -14,113 +13,108 @@
 { config, lib, pkgs, unstable, user, ... }:
 
 {
-    imports = (import ../modules/programs);   
-    home = {
-        username = "${user}";
-        homeDirectory = "/home/${user}";
+  imports = (import ../modules/programs);
+  home = {
+    username = "${user}";
+    homeDirectory = "/home/${user}";
 
-        packages = (with pkgs; [
-            coreutils
-            
-            # Terminal
-            gcc
-            cmake
-            python3
-            btop              # Resource Manager
-            nodejs
-            tldr              # Helper
-            gnumake
+    packages = (with pkgs; [
+      coreutils
 
-            # Video/Audio
-            feh               # Image Viewer
-            mpv               # Media Player
-            pavucontrol       # Audio Control
+      # Terminal
+      gcc
+      cmake
+      python3
+      btop # Resource Manager
+      nodejs
+      tldr # Helper
+      gnumake
 
-            # Apps
-            brave          # Browser
-            librewolf       # Browser
-            nextcloud-client
-            obsidian
-            #vscode
+      # Video/Audio
+      feh # Image Viewer
+      mpv # Media Player
+      pavucontrol # Audio Control
 
-            # File Management
-            neofetch
-            okular            # PDF Viewer
-            p7zip             # Zip Encryption
-            qt5ct
-            rsync             # Syncer - $ rsync -r dir1/ dir2/
-            unrar             # Rar Files
-            unzip             # Zip Files
-            zip               # Zip
-            fzf
-            ranger
-            xarchiver
+      # Apps
+      brave # Browser
+      librewolf # Browser
+      nextcloud-client
+      obsidian
+      #vscode
 
-            # General home-manager
-            dunst            # Notifications
-            kitty        # Terminal Emulator
-            libnotify        # Dependency for Dunst
-            networkmanagerapplet
-            rofi-power-menu  # Power Menu
-            rofi-wayland             # Menu
+      # File Management
+      neofetch
+      okular # PDF Viewer
+      p7zip # Zip Encryption
+      qt5ct
+      rsync # Syncer - $ rsync -r dir1/ dir2/
+      unrar # Rar Files
+      unzip # Zip Files
+      zip # Zip
+      fzf
+      ranger
+      xarchiver
 
-            # Desktop
-            steam            # Games
-            
-            # Laptop
-            libreoffice      # Office Tools
-            thunderbird
+      # General home-manager
+      dunst # Notifications
+      kitty # Terminal Emulator
+      libnotify # Dependency for Dunst
+      networkmanagerapplet
+      rofi-power-menu # Power Menu
+      rofi-wayland # Menu
 
-            simple-scan
-            appimage-run    # Tool to run appimages
-            lshw            # Tool to get hardware info
-	        libsForQt5.qtstyleplugin-kvantum
-        ]) ++ (with unstable; [
-            distrobox
-            nwg-displays
-        ]);
+      # Desktop
+      steam # Games
 
+      # Laptop
+      libreoffice # Office Tools
+      thunderbird
 
-        pointerCursor = {                         # This will set cursor system-wide so applications can not choose their own
-            gtk.enable = true;
-            name = "Bibata-Modern-Ice";
-            package = pkgs.bibata-cursors;
-        };
-        stateVersion = "23.05";
+      simple-scan
+      appimage-run # Tool to run appimages
+      lshw # Tool to get hardware info
+      libsForQt5.qtstyleplugin-kvantum
+    ]) ++ (with unstable; [ distrobox nwg-displays ]);
+
+    pointerCursor =
+      { # This will set cursor system-wide so applications can not choose their own
+        gtk.enable = true;
+        name = "Bibata-Modern-Ice";
+        package = pkgs.bibata-cursors;
+      };
+    stateVersion = "23.05";
+  };
+
+  programs = {
+    home-manager.enable = true;
+    git = {
+      enable = true;
+      userName = "Ryan Wüest";
+      userEmail = "ryan.wueest@protonmail.com";
     };
+  };
 
-    programs = {
-        home-manager.enable = true;
-        git = {
-            enable = true;
-            userName  = "Ryan Wüest";
-            userEmail = "ryan.wueest@protonmail.com";
-	    };
+  gtk = { # Theming
+    enable = true;
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
     };
-
-    gtk = {                                     # Theming
-        enable = true;
-        cursorTheme = {
-            package = pkgs.bibata-cursors;
-            name = "Bibata-Modern-Ice";
-        };
-        theme = {
-            name = "Nordic-darker";
-            package = pkgs.nordic;
-        };
-        iconTheme = {
-            name = "Numix-Circle";
-            package = pkgs.numix-icon-theme-circle;
-        };
-        font = {
-            name = "Roboto";
-        };                                        # Cursor is declared under home.pointerCursor
+    theme = {
+      name = "Nordic-darker";
+      package = pkgs.nordic;
     };
-    qt = {
-        enable = true;
-        style = {
-            name = "Nordic";
-            package = pkgs.nordic;
-        };
+    iconTheme = {
+      name = "Numix-Circle";
+      package = pkgs.numix-icon-theme-circle;
     };
+    font = { name = "Roboto"; }; # Cursor is declared under home.pointerCursor
+  };
+  qt = {
+    enable = true;
+    style = {
+      name = "Nordic";
+      package = pkgs.nordic;
+    };
+  };
 }
