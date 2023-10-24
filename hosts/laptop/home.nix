@@ -1,18 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 
 {
   #imports = [(import ../../modules/desktop/gnome/home.nix)];
   home = { # Specific packages for laptop
-    packages = with pkgs; [
+    packages = (with pkgs; [
       # Applications
       blender
       freetube
       gimp
-      logseq
       slack
       spotify
       xorg.xhost
       zoom-us
-    ];
+    ]) ++ (with unstable; [ logseq ]);
   };
 }

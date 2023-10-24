@@ -39,7 +39,6 @@
       brave # Browser
       librewolf # Browser
       nextcloud-client
-      obsidian
       #vscode
 
       # File Management
@@ -54,6 +53,7 @@
       fzf
       ranger
       xarchiver
+      gittyup
 
       # General home-manager
       dunst # Notifications
@@ -74,7 +74,7 @@
       appimage-run # Tool to run appimages
       lshw # Tool to get hardware info
       libsForQt5.qtstyleplugin-kvantum
-    ]) ++ (with unstable; [ distrobox nwg-displays ]);
+    ]) ++ (with unstable; [ distrobox nwg-displays obsidian ]);
 
     pointerCursor =
       { # This will set cursor system-wide so applications can not choose their own

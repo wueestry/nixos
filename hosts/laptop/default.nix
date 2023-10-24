@@ -98,7 +98,6 @@
   };
 
   services = {
-    blueman.enable = true;
     avahi = { # Needed to find wireless printer
       enable = true;
       nssmdns = true;
@@ -108,6 +107,7 @@
         userServices = true;
       };
     };
+    blueman.enable = true;
     printing = { # Printing and drivers for TS5300
       enable = true;
       drivers = [ pkgs.cnijfilter2 ];
@@ -120,6 +120,16 @@
       };
       pulse.enable = true;
       jack.enable = true;
+    };
+    system76-scheduler.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
+        CPU_SCALING_GOVENOR_ON_AC = "performance";
+        CPU_SCALING_GOVENOR_ON_BAT = "powersafe";
+      };
     };
     xserver = {
       # Enable the X11 windowing system.
@@ -138,4 +148,6 @@
       xkbVariant = "";
     };
   };
+
+  powerManagement.powertop.enable = true;
 }

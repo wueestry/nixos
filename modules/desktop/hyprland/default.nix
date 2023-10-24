@@ -51,7 +51,10 @@ in {
   xdg.portal =
     { # Required for flatpak with window managers and for file browsing
       enable = true;
-      #extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
     };
 
   # nixpkgs.overlays = [    # Waybar with experimental features
