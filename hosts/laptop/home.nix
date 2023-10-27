@@ -6,6 +6,7 @@
     packages = (with pkgs; [
       # Applications
       blender
+      brightnessctl
       freetube
       gimp
       slack

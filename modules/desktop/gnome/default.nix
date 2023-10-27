@@ -20,6 +20,7 @@
   security.pam.services.gdm.enableGnomeKeyring = true;
 
   services.gnome.gnome-keyring.enable = true;
+  services.power-profiles-daemon.enable = false;
 
   environment = {
     systemPackages = with pkgs; [ # Packages installed

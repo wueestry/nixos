@@ -11,6 +11,8 @@
       python3Packages.black
       python3Packages.isort
       python3Packages.flake8
+      python3Packages.pyudev
+      cudaPackages.cudatoolkit
     ]);
   runScript = "bash";
 }).env

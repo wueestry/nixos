@@ -38,7 +38,7 @@
     LC_NUMERIC = "de_CH.UTF-8";
     LC_PAPER = "de_CH.UTF-8";
     LC_TELEPHONE = "de_CH.UTF-8";
-    LC_TIME = "de_CH.UTF-8";
+    LC_TIME = "en-GB.UTF-8";
   };
 
   security.rtkit.enable = true;
