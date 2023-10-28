@@ -64,7 +64,7 @@
       rofi-wayland # Menu
 
       # Desktop
-      steam # Games
+      #steam # Games
 
       # Laptop
       libreoffice # Office Tools

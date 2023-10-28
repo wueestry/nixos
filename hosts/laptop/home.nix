@@ -7,7 +7,7 @@
       # Applications
       blender
       brightnessctl
-      freetube
+      #freetube
       gimp
       slack
       spotify
