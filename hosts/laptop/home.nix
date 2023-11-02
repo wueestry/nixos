@@ -7,10 +7,10 @@
       # Applications
       blender
       brightnessctl
-      #freetube
       gimp
       slack
       spotify
+      tesseract4
       xorg.xhost
       zoom-us
     ]) ++ (with unstable; [ logseq ]);

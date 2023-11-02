@@ -10,4 +10,8 @@
 #               └─ default.nix *
 #
 
-[ ./docker.nix ./virt_manager.nix ]
+[
+  ./docker.nix
+  ./virt_manager.nix
+  # ./waydroid.nix
+]

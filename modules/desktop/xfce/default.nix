@@ -9,4 +9,6 @@
 
   services.gnome.gnome-keyring.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
+
+  environment.systemPackages = with pkgs; [ xorg.xinit ];
 }
