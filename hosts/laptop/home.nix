@@ -13,6 +13,7 @@
       tesseract4
       xorg.xhost
       zoom-us
+      freetube
     ]) ++ (with unstable; [ logseq ]);
   };
 }

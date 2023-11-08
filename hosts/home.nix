@@ -31,7 +31,7 @@
       gnumake
 
       # Video/Audio
-      feh # Image Viewer
+      image-roll # Image Viewer
       mpv # Media Player
       pavucontrol # Audio Control
 
