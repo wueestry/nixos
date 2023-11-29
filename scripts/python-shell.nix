@@ -13,5 +13,5 @@
       python3Packages.flake8
       python3Packages.pyudev
     ]);
-  runScript = "bash";
+  runScript = "zsh";
 }).env

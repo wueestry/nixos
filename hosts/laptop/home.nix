@@ -13,6 +13,7 @@
       zoom-us
       kooha
       ncspot
+      wdisplays
     ]) ++ (with unstable; [ logseq ]);
   };
 }

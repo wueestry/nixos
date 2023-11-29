@@ -41,10 +41,22 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
+  security ={
+    rtkit.enable = true;
+    polkit.enable = true;
 
-  boot.supportedFilesystems = [ "ntfs" ];
+    apparmor = {
+      enable = true;
+      killUnconfinedConfinables = true;
+      packages = [pkgs.apparmor-profiles];
+    };
+  };
+
+  boot = {
+    supportedFilesystems = [ "ntfs" ];
+    
+    blacklistedKernelModules = ["nouveau"];
+  };
 
   programs.zsh.enable = true;
 
@@ -56,7 +68,10 @@
     corefonts
   ];
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluez;
+  };
 
   environment = {
     variables = {
@@ -92,7 +107,9 @@
     };
     tailscale.enable = true;
     gvfs.enable = true;
+    # gnome.glib-networking.enable = true;
   };
+
 
   systemd = { # Starting polkit at login
     user.services.polkit-gnome-authentication-agent-1 = {

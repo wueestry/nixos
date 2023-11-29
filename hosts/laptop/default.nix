@@ -42,7 +42,7 @@
   sound.enable = true;
 
   hardware = {
-    pulseaudio.enable = false;
+    # pulseaudio.enable = false;
     sane = { # Used for scanning with Xsane
       enable = true;
       extraBackends = [ pkgs.sane-airscan ];
@@ -130,8 +130,11 @@
         CPU_BOOST_ON_BAT = 0;
         CPU_SCALING_GOVENOR_ON_AC = "performance";
         CPU_SCALING_GOVENOR_ON_BAT = "powersafe";
+        START_CHARGE_THRESH_BAT0 = 20;
+        STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
@@ -139,6 +142,8 @@
         enable = true;
         wayland = true;
       };
+
+    # add hyprland to display manager sessions
 
       # Enable NVIDIA driver
       #videoDrivers = [ "modesetting" ];

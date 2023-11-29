@@ -55,6 +55,7 @@ in {
       #xdg-desktop-portal-gtk
       #xdg-desktop-portal-hyprland
       #];
+      wlr.enable = true;
       extraPortals =
         lib.optionals (!config.services.xserver.desktopManager.gnome.enable)
         [ pkgs.xdg-desktop-portal-gtk ];

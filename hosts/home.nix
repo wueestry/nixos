@@ -45,7 +45,6 @@
       neofetch
       okular # PDF Viewer
       p7zip # Zip Encryption
-      qt5ct
       rsync # Syncer - $ rsync -r dir1/ dir2/
       unrar # Rar Files
       unzip # Zip Files
@@ -115,8 +114,8 @@
       };
     };
     iconTheme = {
-      name = "Numix-Circle";
-      package = pkgs.numix-icon-theme-circle;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
     font = { name = "Roboto"; }; # Cursor is declared under home.pointerCursor
   };
@@ -125,7 +124,7 @@
     style = {
       #name = "Catppuccin";
       name = "kvantum";
-      #package = pkgs.catppuccin-kde;
+      package = pkgs.catppuccin-kvantum;
     };
   };
   xdg.configFile = {

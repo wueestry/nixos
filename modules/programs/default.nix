@@ -1,1 +1,1 @@
-[ ./vscode ./nvim ./kitty ./zsh ]
+[ ./vscode ./nvim ./kitty ./zsh ./dunst ]
