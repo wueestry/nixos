@@ -9,11 +9,10 @@
       brightnessctl
       gimp
       slack
-      spotify
-      tesseract4
       xorg.xhost
       zoom-us
-      freetube
+      kooha
+      ncspot
     ]) ++ (with unstable; [ logseq ]);
   };
 }

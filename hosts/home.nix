@@ -67,14 +67,19 @@
       #steam # Games
 
       # Laptop
-      libreoffice # Office Tools
+      onlyoffice-bin_7_4 # Office Tools
       thunderbird
 
       simple-scan
       appimage-run # Tool to run appimages
       lshw # Tool to get hardware info
       libsForQt5.qtstyleplugin-kvantum
-    ]) ++ (with unstable; [ distrobox nwg-displays obsidian ]);
+    ]) ++ (with unstable; [
+      distrobox
+      nwg-displays
+      obsidian
+      xwaylandvideobridge
+    ]);
 
     pointerCursor =
       { # This will set cursor system-wide so applications can not choose their own
@@ -101,8 +106,13 @@
       name = "Bibata-Modern-Ice";
     };
     theme = {
-      name = "Nordic-darker";
-      package = pkgs.nordic;
+      name = "Catppuccin-Mocha-Compact-Teal-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "teal" ];
+        size = "compact";
+        tweaks = [ "rimless" ];
+        variant = "mocha";
+      };
     };
     iconTheme = {
       name = "Numix-Circle";
@@ -113,8 +123,18 @@
   qt = {
     enable = true;
     style = {
-      name = "Nordic";
-      package = pkgs.nordic;
+      #name = "Catppuccin";
+      name = "kvantum";
+      #package = pkgs.catppuccin-kde;
     };
+  };
+  xdg.configFile = {
+    "Kvantum/kvantum.kvconfig".text = ''
+      [General]
+      theme=Catppuccin-Mocha-Teal
+    '';
+
+    "Kvantum/Catppuccin".source =
+      "${pkgs.catppuccin-kvantum}/share/Kvantum/Catppuccin";
   };
 }

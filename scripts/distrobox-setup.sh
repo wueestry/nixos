@@ -37,10 +37,11 @@ elif [[ $1 == "zsh" ]]; then
         if [[ $distro == "focal" ]]; then
             # ROS Noetic config
             source /opt/ros/noetic/setup.zsh
-            source ~/catkin_ws/devel/setup.zsh
+            source ~/dev/catkin_ws/devel/setup.zsh
         elif [[ $distro == "jammy" ]]; then
             # ROS Humble config
             source /opt/ros/humble/setup.zsh
+            source ~/dev/ros2_ws/install/setup.zsh
         fi
     '''
 

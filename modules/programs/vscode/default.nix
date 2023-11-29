@@ -18,8 +18,8 @@ in {
     enableUpdateCheck = false;
     extensions = with pkgs.vscode-extensions;
       [
-        arcticicestudio.nord-visual-studio-code
         bbenoist.nix
+        catppuccin.catppuccin-vsc
         matangover.mypy
         ms-python.python
         ms-python.vscode-pylance
@@ -31,7 +31,7 @@ in {
       ] ++ [ vscode-ros vscode-remote-containers ];
     userSettings = {
       "vsicons.dontShowNewVersionMessage" = true;
-      "workbench.colorTheme" = "Nord";
+      "workbench.colorTheme" = "Catppuccin Mocha";
       "workbench.iconTheme" = "vscode-icons";
       "telemetry.telemetryLevel" = "off";
       "editor.fontFamily" = "'MesloLGS NF', 'monospace', monospace";
