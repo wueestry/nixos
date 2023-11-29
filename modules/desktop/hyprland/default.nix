@@ -40,12 +40,12 @@ in {
       enable = true;
       nvidiaPatches = true;
     };
-    waybar = {
-      enable = true;
-      package = pkgs.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    };
+    #waybar = {
+    #  enable = true;
+    #  package = pkgs.waybar.overrideAttrs (oldAttrs: {
+    #    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    #  });
+    #};
   };
 
   xdg.portal =

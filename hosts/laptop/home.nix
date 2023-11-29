@@ -14,6 +14,7 @@
       kooha
       ncspot
       wdisplays
+      todo
     ]) ++ (with unstable; [ logseq ]);
   };
 }
