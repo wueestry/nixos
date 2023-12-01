@@ -60,7 +60,7 @@
 
   programs.zsh.enable = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     jetbrains-mono
     meslo-lgs-nf
     noto-fonts

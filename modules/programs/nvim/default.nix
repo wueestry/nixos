@@ -39,8 +39,8 @@ in {
 
       # Theme
       {
-        plugin = nordic-nvim;
-        config = "colorscheme nordic";
+        plugin = catppuccin-nvim;
+        config = "colorscheme catppuccin-mocha";
       }
 
       # LSP config

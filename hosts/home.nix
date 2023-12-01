@@ -66,7 +66,7 @@
       #steam # Games
 
       # Laptop
-      onlyoffice-bin_7_4 # Office Tools
+      onlyoffice-bin # Office Tools
       thunderbird
 
       simple-scan
@@ -121,10 +121,13 @@
   };
   qt = {
     enable = true;
+    platformTheme = "qtct";
     style = {
-      #name = "Catppuccin";
-      name = "kvantum";
-      package = pkgs.catppuccin-kvantum;
+      name = "Catppuccin-Mocha-Teal";
+      package = pkgs.catppuccin-kvantum.override {
+        accent = "Teal";
+        variant = "Mocha";
+      };
     };
   };
   xdg.configFile = {
@@ -132,8 +135,8 @@
       [General]
       theme=Catppuccin-Mocha-Teal
     '';
-
+  
     "Kvantum/Catppuccin".source =
-      "${pkgs.catppuccin-kvantum}/share/Kvantum/Catppuccin";
+      "${pkgs.catppuccin-kvantum}/share/Kvantum/Catppuccin-Mocha-Teal";
   };
 }

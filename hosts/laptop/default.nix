@@ -75,7 +75,7 @@
     };
   };
 
-  environment = { systemPackages = with pkgs; [ cudaPackages.cudatoolkit ]; };
+  #environment = { systemPackages = with pkgs; [ cudaPackages.cudatoolkit ]; };
 
   systemd.services.nvidia-control-devices = {
     wantedBy = [ "multi-user.target" ];
@@ -134,7 +134,9 @@
         STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
-
+    
+    flatpak.enable = true;
+    
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
