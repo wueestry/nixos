@@ -27,7 +27,7 @@
     ];
     initExtra = ''
             alias pyvenv="nix-shell $HOME/.setup/scripts/python-shell.nix"
-            alias code="code --disable-gpu"
+            alias code="codium --disable-gpu"
             distro=$(lsb_release -sc)
             if [[ $distro == "focal" ]]; then
               # ROS Noetic config

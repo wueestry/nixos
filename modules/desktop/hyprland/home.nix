@@ -10,9 +10,7 @@ let
     fi
   '';
 in {
-  imports = [
-    ../../programs/rofi
-  ];
+  imports = [ ../../programs/rofi ];
 
   home.packages = with pkgs; [
     blueman
@@ -29,7 +27,7 @@ in {
     wlr-randr
   ];
 
-   wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
     extraConfig = import ./config.nix;
@@ -67,5 +65,26 @@ in {
     GDK_BACKEND = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
+  };
+  systemd.user.services.swaybg = let
+    wallpaper = builtins.fetchurl rec {
+      name = "wallpaper-${sha256}.png";
+      url =
+        "https://github.com/Gingeh/wallpapers/blob/2530dba028589bda0ef6743d7960bd8a5b016679/landscapes/yosemite.png?raw=true";
+      sha256 = "0m2bi55mlrgg55flmvg5db93cqnz2b25zgbd5b70ymvh35439q14";
+    };
+  in {
+    Unit = {
+      Description = "Wayland wallpaper daemon";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.swaybg}/bin/swaybg --mode fill --image ${wallpaper}";
+      Restart = "on-failure";
+    };
+
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

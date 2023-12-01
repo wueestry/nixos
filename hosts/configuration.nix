@@ -41,21 +41,21 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  security ={
+  security = {
     rtkit.enable = true;
     polkit.enable = true;
 
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
-      packages = [pkgs.apparmor-profiles];
+      packages = [ pkgs.apparmor-profiles ];
     };
   };
 
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    
-    blacklistedKernelModules = ["nouveau"];
+
+    blacklistedKernelModules = [ "nouveau" ];
   };
 
   programs.zsh.enable = true;
@@ -109,7 +109,6 @@
     gvfs.enable = true;
     # gnome.glib-networking.enable = true;
   };
-
 
   systemd = { # Starting polkit at login
     user.services.polkit-gnome-authentication-agent-1 = {

@@ -75,7 +75,14 @@
     };
   };
 
-  #environment = { systemPackages = with pkgs; [ cudaPackages.cudatoolkit ]; };
+  environment = {
+    systemPackages = with pkgs; [
+      cudaPackages.cudatoolkit
+      libsForQt5.dolphin
+      libsForQt5.dolphin-plugins
+      libsForQt5.ark
+    ];
+  };
 
   systemd.services.nvidia-control-devices = {
     wantedBy = [ "multi-user.target" ];
@@ -87,14 +94,14 @@
     dconf.enable = true;
     light.enable = true;
 
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-        thunar-media-tags-plugin
-      ];
-    };
+    #thunar = {
+    #  enable = true;
+    #  plugins = with pkgs.xfce; [
+    #    thunar-archive-plugin
+    #    thunar-volman
+    #    thunar-media-tags-plugin
+    #  ];
+    #};
   };
 
   services = {
@@ -134,9 +141,9 @@
         STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
-    
+
     flatpak.enable = true;
-    
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
@@ -145,7 +152,7 @@
         wayland = true;
       };
 
-    # add hyprland to display manager sessions
+      # add hyprland to display manager sessions
 
       # Enable NVIDIA driver
       #videoDrivers = [ "modesetting" ];

@@ -80,7 +80,7 @@ in {
       # Add indentation guides even on blank lines
       {
         plugin = indent-blankline-nvim;
-        config = toLua "require('indent_blankline').setup()";
+        config = toLua "require('ibl').setup()";
       }
 
       # Fuzzy Finder (files, lsp, etc)

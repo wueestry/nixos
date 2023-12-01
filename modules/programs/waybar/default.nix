@@ -1,16 +1,12 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs, lib, config, ... }:
+let
   brightnessctl = pkgs.brightnessctl + "/bin/brightnessctl";
   pamixer = pkgs.pamixer + "/bin/pamixer";
   waybar-wttr = pkgs.stdenv.mkDerivation {
     name = "waybar-wttr";
     buildInputs = [
       (pkgs.python39.withPackages
-        (pythonPackages: with pythonPackages; [requests]))
+        (pythonPackages: with pythonPackages; [ requests ]))
     ];
     unpackPhase = "true";
     installPhase = ''
@@ -26,10 +22,18 @@ in {
     enable = true;
     systemd.enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-      patchPhase = ''
-        substituteInPlace src/modules/wlr/workspace_manager.cpp --replace "zext_workspace_handle_v1_activate(workspace_handle_);" "const std::string command = \"${pkgs.hyprland}/bin/hyprctl dispatch workspace \" + name_; system(command.c_str());"
-      '';
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      #patchPhase = ''
+      #  substituteInPlace src/modules/wlr/workspace_manager.cpp --replace "zext_workspace_handle_v1_activate(workspace_handle_);" "const std::string command = \"${pkgs.hyprland}/bin/hyprctl dispatch workspace \" + name_; system(command.c_str());"
+      #'';
+      patches = (oldAttrs.patches or [ ]) ++ [
+        (pkgs.fetchpatch {
+          name = "fix waybar hyprctl";
+          url =
+            "https://aur.archlinux.org/cgit/aur.git/plain/hyprctl.patch?h=waybar-hyprland-git";
+          sha256 = "sha256-pY3+9Dhi61Jo2cPnBdmn3NUTSA8bAbtgsk2ooj4y7aQ=";
+        })
+      ];
     });
 
     settings = {
@@ -44,13 +48,13 @@ in {
         height = 34;
         modules-left = [
           "custom/logo"
-          "wlr/workspaces"
+          "hyprland/workspaces"
           "custom/weather"
           "custom/todo"
           "tray"
         ];
 
-        modules-center = [];
+        modules-center = [ ];
 
         modules-right = [
           "battery"
@@ -63,7 +67,7 @@ in {
           "custom/power"
         ];
 
-        "wlr/workspaces" = {
+        "hyprland/workspaces" = {
           on-click = "activate";
           format = "{name}";
           all-outputs = true;
@@ -84,36 +88,35 @@ in {
             todo = pkgs.todo + "/bin/todo";
             sed = pkgs.gnused + "/bin/sed";
             wc = pkgs.coreutils + "/bin/wc";
-          in
-            pkgs.writeShellScript "todo-waybar" ''
-              #!/bin/sh
+          in pkgs.writeShellScript "todo-waybar" ''
+            #!/bin/sh
 
-              total_todo=$(${todo} | ${wc} -l)
-              todo_raw_done=$(${todo} raw done | ${sed} 's/^/      ◉ /' | ${sed} -z 's/\n/\\n/g')
-              todo_raw_undone=$(${todo} raw todo | ${sed} 's/^/     ◉ /' | ${sed} -z 's/\n/\\n/g')
-              done=$(${todo} raw done | ${wc} -l)
-              undone=$(${todo} raw todo | ${wc} -l)
-              tooltip=$(${todo})
+            total_todo=$(${todo} | ${wc} -l)
+            todo_raw_done=$(${todo} raw done | ${sed} 's/^/      ◉ /' | ${sed} -z 's/\n/\\n/g')
+            todo_raw_undone=$(${todo} raw todo | ${sed} 's/^/     ◉ /' | ${sed} -z 's/\n/\\n/g')
+            done=$(${todo} raw done | ${wc} -l)
+            undone=$(${todo} raw todo | ${wc} -l)
+            tooltip=$(${todo})
 
-              left="$done/$total_todo"
+            left="$done/$total_todo"
 
-              header="<b>todo</b>\\n\\n"
-              tooltip=""
-              if [[ $total_todo -gt 0 ]]; then
-              	if [[ $undone -gt 0 ]]; then
-              		export tooltip="$header👷 Today, you need to do:\\n\\n $(echo $todo_raw_undone)\\n\\n✅ You have already done:\\n\\n $(echo $todo_raw_done)"
-              		export output=" 🗒️ $left"
-              	else
-              		export tooltip="$header✅ All done!\\n🥤 Remember to stay hydrated!"
-              		export output=" 🎉 $left"
-              	fi
-              else
-              	export tooltip=""
-              	export output=""
-              fi
+            header="<b>todo</b>\\n\\n"
+            tooltip=""
+            if [[ $total_todo -gt 0 ]]; then
+            	if [[ $undone -gt 0 ]]; then
+            		export tooltip="$header👷 Today, you need to do:\\n\\n $(echo $todo_raw_undone)\\n\\n✅ You have already done:\\n\\n $(echo $todo_raw_done)"
+            		export output=" 🗒️ $left"
+            	else
+            		export tooltip="$header✅ All done!\\n🥤 Remember to stay hydrated!"
+            		export output=" 🎉 $left"
+            	fi
+            else
+            	export tooltip=""
+            	export output=""
+            fi
 
-              printf '{"text": "%s", "tooltip": "%s" }' "$output" "$tooltip"
-            '';
+            printf '{"text": "%s", "tooltip": "%s" }' "$output" "$tooltip"
+          '';
           return-type = "json";
         };
 
@@ -131,9 +134,7 @@ in {
           format = "󰤆";
         };
 
-        tray = {
-          spacing = 10;
-        };
+        tray = { spacing = 10; };
 
         clock = {
           tooltip = false;
@@ -150,7 +151,7 @@ in {
         backlight = {
           tooltip = false;
           format = "{icon} {percent}%";
-          format-icons = ["󰋙" "󰫃" "󰫄" "󰫅" "󰫆" "󰫇" "󰫈"];
+          format-icons = [ "󰋙" "󰫃" "󰫄" "󰫅" "󰫆" "󰫇" "󰫈" ];
           on-scroll-up = "${brightnessctl} s 1%-";
           on-scroll-down = "${brightnessctl} s +1%";
         };
@@ -165,7 +166,7 @@ in {
           format-charging = "󰂄 {capacity}%";
           format-plugged = "󰚥 {capacity}%";
           format-alt = "{time} {icon}";
-          format-icons = ["󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-icons = [ "󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
         };
 
         network = {
@@ -182,7 +183,7 @@ in {
           tooltip = false;
           format = "{icon} {volume}%";
           format-muted = "󰖁";
-          format-icons = {default = ["󰕿" "󰖀" "󰕾"];};
+          format-icons = { default = [ "󰕿" "󰖀" "󰕾" ]; };
           tooltip-format = "{desc}, {volume}%";
           on-click = "${pamixer} -t";
           on-scroll-up = "${pamixer} -d 1";

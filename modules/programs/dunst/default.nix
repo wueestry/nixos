@@ -1,8 +1,5 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{ pkgs, config, ... }:
+let
   notify-send = pkgs.libnotify + "/bin/notify-send";
   pamixer = pkgs.pamixer + "/bin/pamixer";
 
@@ -52,28 +49,22 @@
     fi
   '';
 
-  brightness = let
-    brightnessctl = pkgs.brightnessctl + "/bin/brightnessctl";
-  in
-    pkgs.writeShellScriptBin "brightness" ''
-      #!/bin/sh
+  brightness = let brightnessctl = pkgs.brightnessctl + "/bin/brightnessctl";
+  in pkgs.writeShellScriptBin "brightness" ''
+    #!/bin/sh
 
-      ${brightnessctl} "$@"
-      brightness=$(echo $(($(${brightnessctl} g) * 100 / $(${brightnessctl} m))))
+    ${brightnessctl} "$@"
+    brightness=$(echo $(($(${brightnessctl} g) * 100 / $(${brightnessctl} m))))
 
-      ${notify-send} -r 69 \
-          -a "Brightness" "Currently at $brightness%" \
-          -h int:value:"$brightness" \
-          -i ${./assets/brightness.svg} \
-          -t 888 \
-          -u low
-    '';
+    ${notify-send} -r 69 \
+        -a "Brightness" "Currently at $brightness%" \
+        -h int:value:"$brightness" \
+        -i ${./assets/brightness.svg} \
+        -t 888 \
+        -u low
+  '';
 in {
-  home.packages = [
-    volume
-    microphone
-    brightness
-  ];
+  home.packages = [ volume microphone brightness ];
 
   services.dunst = {
     enable = true;
@@ -117,7 +108,8 @@ in {
         show_age_threshold = 60;
         markup = "full";
         font = "monospace 10";
-        format = "<span size='x-large' font_desc='monospace 9' weight='bold' foreground='#cdd6f4'>%a</span>\\n%s\\n%b";
+        format =
+          "<span size='x-large' font_desc='monospace 9' weight='bold' foreground='#cdd6f4'>%a</span>\\n%s\\n%b";
         word_wrap = "yes";
         sort = "yes";
         shrink = "no";
@@ -136,7 +128,7 @@ in {
         mouse_right_click = "close_current";
       };
 
-      fullscreen_delay_everything = {fullscreen = "delay";};
+      fullscreen_delay_everything = { fullscreen = "delay"; };
 
       urgency_low = {
         timeout = 3;

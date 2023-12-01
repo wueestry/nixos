@@ -52,7 +52,6 @@
       fzf
       ranger
       xarchiver
-      gittyup
 
       # General home-manager
       dunst # Notifications
@@ -73,12 +72,7 @@
       appimage-run # Tool to run appimages
       lshw # Tool to get hardware info
       libsForQt5.qtstyleplugin-kvantum
-    ]) ++ (with unstable; [
-      distrobox
-      nwg-displays
-      obsidian
-      xwaylandvideobridge
-    ]);
+    ]) ++ (with unstable; [ distrobox obsidian xwaylandvideobridge ]);
 
     pointerCursor =
       { # This will set cursor system-wide so applications can not choose their own
@@ -135,7 +129,7 @@
       [General]
       theme=Catppuccin-Mocha-Teal
     '';
-  
+
     "Kvantum/Catppuccin".source =
       "${pkgs.catppuccin-kvantum}/share/Kvantum/Catppuccin-Mocha-Teal";
   };
