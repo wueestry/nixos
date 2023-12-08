@@ -27,17 +27,21 @@
     ];
     initExtra = ''
             alias pyvenv="nix-shell $HOME/.setup/scripts/python-shell.nix"
-            alias code="codium --disable-gpu"
+            #alias code="code --disable-gpu"
+            alias obsidian="obsidian --disable-gpu"
+            alias logseq="logseq --disable-gpu"
+            alias code="flatpak run com.visualstudio.code"
             distro=$(lsb_release -sc)
             if [[ $distro == "focal" ]]; then
               # ROS Noetic config
               source /opt/ros/noetic/setup.zsh
               source ~/dev/catkin_ws/devel/setup.zsh
-      	alias rviz="QT_QPA_PLATFORM=xcb rviz"
+              alias rviz="QT_QPA_PLATFORM=xcb rviz"
             elif [[ $distro == "jammy" ]]; then
               # ROS Humble config
               source /opt/ros/humble/setup.zsh
               source ~/dev/ros2_ws/install/setup.zsh
+              alias ign="QT_QPA_PLATFORM=xcb ign"
               alias rviz2="QT_QPA_PLATFORM=xcb rviz2"
             fi
     '';

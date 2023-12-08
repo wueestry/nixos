@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 let
   vscode-ros = pkgs.vscode-utils.extensionFromVscodeMarketplace {
     name = "vscode-ros";
@@ -15,7 +15,7 @@ let
 in {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    package = unstable.vscode;
     enableUpdateCheck = false;
     extensions = with pkgs.vscode-extensions;
       [

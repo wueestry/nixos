@@ -40,7 +40,7 @@ in {
       # Theme
       {
         plugin = catppuccin-nvim;
-        config = "colorscheme catppuccin-mocha";
+        config = "colorscheme catppuccin";
       }
 
       # LSP config
@@ -98,6 +98,14 @@ in {
 
       # Better support for nix files
       vim-nix
+
+      which-key-nvim
+
+      nvim-web-devicons
+      {
+        plugin = nvim-tree-lua;
+        config = toLuaFile ./plugins/nvim-tree.lua;
+      }
 
     ];
 

@@ -17,6 +17,6 @@
       todo
       octaveFull
       steam
-    ]); # ++ (with unstable; [ logseq ]);
+    ]) ++ (with unstable; [ logseq ]);
   };
 }

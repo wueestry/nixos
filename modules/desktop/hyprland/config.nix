@@ -244,7 +244,7 @@
   # IDK
   $term = kitty
   $files = dolphin
-  $browser = librewolf
+  $browser = brave
 
 
       # █▀ █▀▀ █▀█ █▀▀ █▀▀ █▄░█ █▀ █░█ █▀█ ▀█▀
