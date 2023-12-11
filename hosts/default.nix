@@ -24,7 +24,7 @@ let
   unstable = import nixpkgs-unstable {
     inherit system;
     config.allowUnfree = true;
-    config.permittedInsecurePackages = [ "electron-24.8.6" ];
+    config.permittedInsecurePackages = [ "electron-24.8.6" "electron-25.9.0" ];
   };
 
   lib = nixpkgs.lib;

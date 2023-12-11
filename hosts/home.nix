@@ -19,19 +19,11 @@
     homeDirectory = "/home/${user}";
 
     packages = (with pkgs; [
-      coreutils
-
       # Terminal
-      gcc
-      cmake
-      python3
       btop # Resource Manager
-      nodejs
       tldr # Helper
-      gnumake
 
       # Video/Audio
-      image-roll # Image Viewer
       mpv # Media Player
       pavucontrol # Audio Control
 
@@ -43,36 +35,45 @@
 
       # File Management
       neofetch
-      okular # PDF Viewer
-      p7zip # Zip Encryption
-      rsync # Syncer - $ rsync -r dir1/ dir2/
-      unrar # Rar Files
-      unzip # Zip Files
       zip # Zip
       fzf
       ranger
-      xarchiver
 
       # General home-manager
       dunst # Notifications
       kitty # Terminal Emulator
       libnotify # Dependency for Dunst
       networkmanagerapplet
-      rofi-power-menu # Power Menu
       rofi-wayland # Menu
 
       # Desktop
-      #steam # Games
+      steam
+      kooha
+      wdisplays
+      slack
+      gimp
+      brightnessctl
+      ncspot
+      zoom-us
 
       # Laptop
       onlyoffice-bin # Office Tools
       thunderbird
 
-      simple-scan
-      appimage-run # Tool to run appimages
-      lshw # Tool to get hardware info
+      distrobox
+      obsidian
+      logseq
+      xwaylandvideobridge
+
       libsForQt5.qtstyleplugin-kvantum
-    ]) ++ (with unstable; [ distrobox obsidian xwaylandvideobridge ]);
+
+      # fonts
+      jetbrains-mono
+      meslo-lgs-nf
+      noto-fonts
+      roboto
+      corefonts
+    ]);
 
     pointerCursor =
       { # This will set cursor system-wide so applications can not choose their own
@@ -82,6 +83,8 @@
       };
     stateVersion = "23.05";
   };
+
+  fonts.fontconfig.enable = true;
 
   programs = {
     home-manager.enable = true;
