@@ -27,10 +27,10 @@
     ];
     initExtra = ''
             alias pyvenv="nix-shell $HOME/.setup/scripts/python-shell.nix"
-            #alias code="code --disable-gpu"
+            alias code="code --disable-gpu"
             alias obsidian="obsidian --disable-gpu"
             alias logseq="logseq --disable-gpu"
-            alias code="flatpak run com.visualstudio.code"
+            #alias code="flatpak run com.visualstudio.code"
             distro=$(lsb_release -sc)
             if [[ $distro == "focal" ]]; then
               # ROS Noetic config
